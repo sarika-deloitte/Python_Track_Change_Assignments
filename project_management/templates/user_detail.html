@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Detail</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>User Detail</h1>
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>First Name:</strong> {{ user.first_name }}</p>
+        <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+        <p><strong>Active:</strong> {% if user.is_active %} Yes {% else %} No {% endif %}</p>
+
+        <p><strong>Projects:</strong>
+            {% if user.projects.all %}
+                <ul>
+                    {% for project in user.projects.all %}
+                        <li>{{ project.name }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                No projects assigned
+            {% endif %}
+        </p>
+
+        <p><strong>Sprints:</strong>
+            {% if user.sprints.all %}
+                <ul>
+                    {% for sprint in user.sprints.all %}
+                        <li>{{ sprint.name }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                No sprints assigned
+            {% endif %}
+        </p>
+
+        <a href="{% url 'user_list' %}">Back to Users</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<!-- templates/sprint_confirm_delete.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Confirm delete sprint</h2>
+<form method="post">
+    {% csrf_token %}
+    <p>Are you sure you want to delete "{{ object.label }}"?</p>
+    <button type="submit">Confirm</button>
+    <a href="{% url 'sprint_list' %}">Cancel</a>
+</form>
+{% endblock %}

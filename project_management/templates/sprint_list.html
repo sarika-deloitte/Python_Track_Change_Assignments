@@ -1,0 +1,33 @@
+<!-- templates/sprint_list.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Sprints</h2>
+<a href="{% url 'sprint_create' %}">Add New Sprint</a>
+<table>
+    <thead>
+        <tr>
+            <th>Label</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Project</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for sprint in sprints %}
+        <tr>
+            <td>{{ sprint.label }}</td>
+            <td>{{ sprint.start_date }}</td>
+            <td>{{ sprint.end_date }}</td>
+            <td>{{ sprint.project.name }}</td>
+            <td>
+                <a href="{% url 'sprint_update' sprint.pk %}">Edit</a>
+                <a href="{% url 'sprint_delete' sprint.pk %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

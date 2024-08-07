@@ -1,0 +1,10 @@
+<!-- templates/home.html -->
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>Welcome to the Project Management System</h1>
+<p><a href="{% url 'user_list' %}">Manage Users</a></p>
+<p><a href="{% url 'project_list' %}">Manage Projects</a></p>
+<p><a href="{% url 'sprint_list' %}">Manage Sprints</a></p>
+{% endblock %}

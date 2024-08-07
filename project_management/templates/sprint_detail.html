@@ -1,0 +1,31 @@
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sprint Detail</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Sprint Detail</h1>
+        <p><strong>Name:</strong> {{ sprint.name }}</p>
+        <p><strong>Start Date:</strong> {{ sprint.start_date }}</p>
+        <p><strong>End Date:</strong> {{ sprint.end_date }}</p>
+        <p><strong>Project:</strong> {{ sprint.project.name }}</p>
+        <p><strong>Users:</strong> 
+            {% for user in sprint.users.all %}
+                {{ user.username }}{% if not forloop.last %}, {% endif %}
+            {% empty %}
+                No users assigned
+            {% endfor %}
+        </p>
+        <a href="{% url 'sprint_list' %}">Back to Sprints</a>
+    </div>
+</body>
+</html>
+
+{% endblock %}
